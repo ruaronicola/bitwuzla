@@ -377,6 +377,14 @@ bzla_node_is_fp_const_nan(Bzla *bzla, BzlaNode *exp)
 /*------------------------------------------------------------------------*/
 
 bool
+bzla_node_is_bool(Bzla *bzla, const BzlaNode *exp)
+{
+  assert(bzla);
+  assert(exp);
+  return bzla_sort_is_bool(bzla, bzla_node_get_sort_id(exp));
+}
+
+bool
 bzla_node_is_bv(Bzla *bzla, const BzlaNode *exp)
 {
   assert(bzla);

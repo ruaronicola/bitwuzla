@@ -259,6 +259,8 @@ typedef struct BzlaArgsNode BzlaArgsNode;
 
 /*------------------------------------------------------------------------*/
 
+/** Return true if given node is a bit-vector node of size 1. */
+bool bzla_node_is_bool(Bzla *bzla, const BzlaNode *exp);
 /** Return true if given node is a bit-vector node. */
 bool bzla_node_is_bv(Bzla *bzla, const BzlaNode *exp);
 /** Return true if given node is a rounding mode node. */

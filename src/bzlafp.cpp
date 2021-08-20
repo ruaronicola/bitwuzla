@@ -2186,11 +2186,16 @@ BzlaFPWordBlaster::word_blast(BzlaNode *node)
     cur = bzla_node_real_addr(to_visit.back());
     to_visit.pop_back();
 
-    if (d_prop_map.find(cur) != d_prop_map.end()
-        || d_rm_map.find(cur) != d_rm_map.end()
-        || d_sbv_map.find(cur) != d_sbv_map.end()
-        || d_ubv_map.find(cur) != d_ubv_map.end()
-        || d_unpacked_float_map.find(cur) != d_unpacked_float_map.end())
+    /* Already word-blasted, skip. */
+    if ((bzla_node_is_bool(d_bzla, cur)
+         && d_prop_map.find(cur) != d_prop_map.end())
+        || (bzla_node_is_rm(d_bzla, cur)
+            && d_rm_map.find(cur) != d_rm_map.end())
+        || (bzla_node_is_bv(d_bzla, cur)
+            && (d_sbv_map.find(cur) != d_sbv_map.end()
+                || d_ubv_map.find(cur) != d_ubv_map.end()))
+        || (bzla_node_is_fp(d_bzla, cur)
+            && d_unpacked_float_map.find(cur) != d_unpacked_float_map.end()))
     {
       continue;
     }
