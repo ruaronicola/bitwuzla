@@ -44,12 +44,8 @@ cdef str _to_str(const char *string):
     cdef bytes py_str = string
     return str(py_str.decode())
 
-cdef char * _to_cstr(s):
-    if s is None:
-        return NULL
-    cdef bytes py_str = s.encode()
-    cdef char * c_str = py_str
-    return c_str
+cdef bytes _to_cstr(s):
+    return s.encode()
 
 cdef _to_result(BitwuzlaResult result):
     if result == BITWUZLA_SAT:
